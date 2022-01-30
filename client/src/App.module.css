@@ -1,0 +1,20 @@
+.main {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% auto 5%;
+  justify-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+}
+
+.inside {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: repeat(auto-fill, auto) ;
+  grid-auto-rows: 220px;
+  justify-items: space-between;
+  align-items: space-around;
+  gap: 20px;
+  width: 90%;
+}

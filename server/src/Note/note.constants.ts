@@ -1,0 +1,1 @@
+export const NOTE_NOT_FOUND_ERROR = 'Соиальная сеть с таким ID не найдена';

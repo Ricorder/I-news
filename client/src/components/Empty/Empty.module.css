@@ -1,0 +1,7 @@
+.maindiv {
+  border: dashed rgb(73, 69, 69);
+  background: rgb(52, 52, 52);
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}

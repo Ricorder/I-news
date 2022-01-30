@@ -1,0 +1,17 @@
+.header {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  width: 90%;
+}
+
+.button {
+  background-color: red;
+  color: white;
+  width: 150px;
+  height: 50px;
+  border: 1px solid red;
+  border-radius: 5px;
+}
