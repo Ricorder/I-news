@@ -13,18 +13,21 @@ export default function Modal({ active, setActive, addNote }) {
   };
 
   const addNoteHandler = () => {
-    const newNote = {
-      title: inputTitle,
-      link: input,
-      status
-    };
-    console.log(newNote);
-    addNote(newNote);
-    setInputTitle('')
-    setInput('')
-    setStatus(false)
-    setActive(false);
-  };
+    const regexp = /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-/])*)?/;
+    if (regexp.test(input)) {
+      const newNote = {
+        title: inputTitle,
+        link: input,
+        status,
+      };
+
+      addNote(newNote);
+      setInputTitle("");
+      setInput("");
+      setStatus(false);
+      setActive(false);
+    }
+  }
 
   return (
     <div

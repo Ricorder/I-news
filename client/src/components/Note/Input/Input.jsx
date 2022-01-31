@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Input.module.css";
 
-export default function Input({ title, id, link, saveLink }) {
-  const [input, setInput] = useState(link);
-
+export default function Input({ title, id, saveLink, setInput, input }) {
   const changeInputHandler = ({ target: { value } }) => {
     setInput(value);
     saveLink(id, value);

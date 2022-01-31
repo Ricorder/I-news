@@ -18,3 +18,10 @@
   gap: 20px;
   width: 90%;
 }
+
+@media (max-width: 720px) {
+  .inside {
+    grid-template-columns: auto;
+    min-width: 520px;
+  }
+}

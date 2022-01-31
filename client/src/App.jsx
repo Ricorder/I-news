@@ -7,11 +7,11 @@ import Note from "./components/Note/Note";
 
 function App() {
   const [notes, setNotes] = useState([]);
-
+  console.log(notes);
   const saveLink = (id, value) => {
     console.log(value);
-    setNotes(prev =>
-      prev.map(note => {
+    setNotes((prev) =>
+      prev.map((note) => {
         if (note._id === id) {
           return {
             ...note,
@@ -28,8 +28,8 @@ function App() {
       method: "PATCH",
     });
     const changeStatusFromServer = await response.json();
-    setNotes(prev =>
-      prev.map(note => {
+    setNotes((prev) =>
+      prev.map((note) => {
         if (note._id === id) {
           return changeStatusFromServer;
         }
@@ -56,7 +56,6 @@ function App() {
       },
       body: JSON.stringify(newNote),
     });
-    console.log(response);
     const newNoteFromServer = await response.json();
     setNotes((prev) => [...prev, newNoteFromServer]);
   };
@@ -66,23 +65,27 @@ function App() {
       method: "DELETE",
     });
     if (response.status === 200) {
-      setNotes((prev) => prev.filter((note) => note._id !== id));
     }
+    setNotes((prev) => prev.filter((note) => note._id !== id));
   };
 
   const saveNotes = async () => {
     await Promise.all(
-      notes.map(note => {
+      notes.map((note) => {
+        const regexp =
+          /^((ftp|http|https):\/\/)?(www\.)?([A-Za-zА-Яа-я0-9]{1}[A-Za-zА-Яа-я0-9-]*\.?)*\.{1}[A-Za-zА-Яа-я0-9-]{2,8}(\/([\w#!:.?+=&%@!\-/])*)?/;
         const link = note.link;
-        return fetch(`http://localhost:5000/api/${note._id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ link }),
-        });
+        if (regexp.test(link)) {
+          return fetch(`http://localhost:5000/api/${note._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ link }),
+          });
+        }
       })
-    )
+    );
   };
 
   return (
